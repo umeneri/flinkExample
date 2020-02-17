@@ -9,7 +9,7 @@ package org.example
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,52 +18,23 @@ package org.example
  * limitations under the License.
  */
 
+import java.nio.file.{Files, Paths}
+
 import org.apache.flink.api.scala._
 
-/**
- * Skeleton for a Flink Job.
- *
- * For a full example of a Flink Job, see the WordCountJob.scala file in the
- * same package/directory or have a look at the website.
- *
- * You can also generate a .jar file that you can submit on your Flink
- * cluster. Just type
- * {{{
- *   sbt clean assembly
- * }}}
- * in the projects root directory. You will find the jar in
- * target/scala-2.11/Flink\ Project-assembly-0.1-SNAPSHOT.jar
- *
- */
 object Job {
   def main(args: Array[String]) {
     // set up the execution environment
     val env = ExecutionEnvironment.getExecutionEnvironment
+    val textPath = "./src/main/resources/test.text"
+    val a = Files.exists(Paths.get(textPath))
+    println(a)
 
-    /**
-     * Here, you can start creating your execution plan for Flink.
-     *
-     * Start with getting some data from the environment, like
-     * env.readTextFile(textPath);
-     *
-     * then, transform the resulting DataSet[String] using operations
-     * like:
-     *   .filter()
-     *   .flatMap()
-     *   .join()
-     *   .group()
-     *
-     * and many more.
-     * Have a look at the programming guide:
-     *
-     * http://flink.apache.org/docs/latest/programming_guide.html
-     *
-     * and the examples
-     *
-     * http://flink.apache.org/docs/latest/examples.html
-     *
-     */
-
+    val result = env.readTextFile(textPath)
+    result.map { a =>
+      println(a)
+      a
+    }.print()
 
     // execute program
     env.execute("Flink Scala API Skeleton")
