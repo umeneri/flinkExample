@@ -33,7 +33,7 @@ import org.apache.flink.streaming.api.scala._
  *
  * Usage:
  * {{{
- *   SocketTextStreamWordCount <hostname> <port> <output path>
+ *   SocketTeTypeInformationxtStreamWordCount <hostname> <port> <output path>
  * }}}
  *
  * This example shows how to:
