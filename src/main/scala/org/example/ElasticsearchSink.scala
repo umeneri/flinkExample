@@ -26,6 +26,8 @@ object ElasticsearchSink extends App {
 
   val esFunction = new ElasticsearchCreateFunction()
   stream.addSink(new ElasticsearchSink(config, transportAddresses, esFunction))
+
+  env.execute("Elasticsearch SocketTextStreamWordCount Example")
 }
 
 class ElasticsearchCreateFunction extends ElasticsearchSinkFunction[String] {
