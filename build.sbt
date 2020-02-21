@@ -18,12 +18,11 @@ val flinkDependencies = Seq(
   "org.apache.flink" %% "flink-scala" % flinkVersion,
   "org.apache.flink" %% "flink-streaming-scala" % flinkVersion,
   "org.apache.flink" %% "flink-connector-elasticsearch5" % flinkVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-streams" % elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-testkit" % elastic4sVersion % "test",
-  "com.sksamuel.elastic4s" %% "elastic4s-embedded" % elastic4sVersion % "test",
-  "org.codelibs" %% "elasticsearch-cluster-runner" % "5.5.2.0" % "test"
+//  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
+//  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
+//  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % elastic4sVersion,
+//  "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion,
+    "org.codelibs" %% "elasticsearch-cluster-runner" % "5.5.2.0" % "test"
 )
 lazy val root = (project in file(".")).
   settings(
