@@ -11,18 +11,23 @@ organization := "org.example"
 
 ThisBuild / scalaVersion := "2.12.7"
 
-val flinkVersion = "1.7.0"
+val flinkVersion = "1.9.2"
 val elastic4sVersion = "5.6.10"
+val akkaVersion = "2.5.25"
+val akkaHttpVersion = "10.0.10"
 
 val flinkDependencies = Seq(
   "org.apache.flink" %% "flink-scala" % flinkVersion,
   "org.apache.flink" %% "flink-streaming-scala" % flinkVersion,
   "org.apache.flink" %% "flink-connector-elasticsearch5" % flinkVersion,
-//  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
-//  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
-//  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % elastic4sVersion,
-//  "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion,
-    "org.codelibs" %% "elasticsearch-cluster-runner" % "5.5.2.0" % "test"
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+  "de.heikoseeberger" %% "akka-http-circe" % "1.29.1",
+  //  "com.softwaremill.sttp.client" %% "akka-http-backend" % "2.0.0-RC13",
+  //  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
+  //  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
+  //  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % elastic4sVersion,
+  //  "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion,
 )
 lazy val root = (project in file(".")).
   settings(
@@ -32,7 +37,7 @@ lazy val root = (project in file(".")).
 assembly / mainClass := Some("org.example.Job")
 
 // make run command include the provided dependencies
-Compile / run  := Defaults.runTask(Compile / fullClasspath,
+Compile / run := Defaults.runTask(Compile / fullClasspath,
   Compile / run / mainClass,
   Compile / run / runner
 ).evaluated
@@ -42,4 +47,4 @@ Compile / run / fork := true
 Global / cancelable := true
 
 // exclude Scala library from assembly
-assembly / assemblyOption  := (assembly / assemblyOption).value.copy(includeScala = false)
+assembly / assemblyOption := (assembly / assemblyOption).value.copy(includeScala = false)
