@@ -23,6 +23,7 @@ val flinkDependencies = Seq(
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "de.heikoseeberger" %% "akka-http-circe" % "1.29.1",
+  "org.scalatest"     %% "scalatest"           % "3.0.0" % "test",
   //  "com.softwaremill.sttp.client" %% "akka-http-backend" % "2.0.0-RC13",
   //  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
   //  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
