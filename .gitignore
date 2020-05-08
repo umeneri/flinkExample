@@ -183,4 +183,3 @@ override.tf.json
 # example: *tfplan*
 
 .tfignore
-src/test/
