@@ -1,9 +1,0 @@
-# sample run
-
-
-
-$ sbt run
-other session:
-$ nc -l 9000
-{"name": "nc test"}
-

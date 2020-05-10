@@ -117,9 +117,11 @@ resource "aws_iam_instance_profile" "emr-ec2-profile" {
 ## EMR Cluster
 resource "aws_emr_cluster" "emr-test-cluster" {
   name = "emr-test-cluster"
-  release_label = "emr-5.0.0"
+  release_label = "emr-5.29.0"
   applications = [
-    "Hadoop"]
+    "Hadoop",
+    "Flink"
+  ]
   log_uri = "s3://${aws_s3_bucket.emr-log.id}/elasticmapreduce/"
   service_role = "${aws_iam_role.emr-service-role.arn}"
   master_instance_group {
@@ -134,8 +136,18 @@ resource "aws_emr_cluster" "emr-test-cluster" {
 
   ec2_attributes {
     key_name = "${var.ssh_key_name}"
-
     subnet_id = "${aws_subnet.public.0.id}"
     instance_profile = "${aws_iam_instance_profile.emr-ec2-profile.name}"
   }
+
+  configurations_json = <<EOF
+[
+    {
+      "Classification": "flink-conf",
+      "Properties": {
+        "taskmanager.numberOfTaskSlots":"2"
+      }
+    }
+]
+EOF
 }
